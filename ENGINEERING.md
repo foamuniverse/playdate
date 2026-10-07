@@ -1,0 +1,12 @@
+PostgreSQL owns domain logic and invariants.
+Application code accesses PostgreSQL only through database API functions; never application tables directly.
+Python should know the database API, not the database representation.
+Never use SELECT * in application code. Select explicit columns.
+Never use positional INSERT INTO x VALUES (...); name columns explicitly.
+Treat function signatures/result columns as API contracts.
+Python is a thin HTTP/auth/serialization adapter; do not duplicate domain logic there.
+Prefer schema changes that preserve existing API contracts.
+Enforce architectural boundaries with PostgreSQL privileges where possible, rather than relying on discipline.
+Prefer boring, explicit, production-grade code over clever convenience.
+If we need a new API, like for v2 of the app, we put another set of functions into a separate PostgreSQL schema.
+Python has no access to the schema that stores tables, just the API schema.
