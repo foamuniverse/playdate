@@ -12,3 +12,15 @@
 - Python has no access to the schema that stores tables, just the API schema.
 - TL;DR: UI composition is local; data composition is remote. Do not conflate them.
 Long version: Decouple UI decomposition from data-access composition. Component boundaries must not define network boundaries. A server-backed view transition or user action should normally require one coarse-grained HTTP round trip returning all state needed for the resulting view. Avoid dependent request waterfalls.
+
+many React components
+        ≠
+many HTTP calls
+
+one page/action
+        ≈
+one purpose-built backend call
+        ↓
+one DB function
+        ↓
+complete view model
