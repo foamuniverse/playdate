@@ -11,3 +11,4 @@
 - If we need a new API, like for v2 of the app, we put another set of functions into a separate PostgreSQL schema.
 - Python has no access to the schema that stores tables, just the API schema.
 - Coarse-grained network boundary: UI actions and views should normally be satisfied by one HTTP round trip, or by a small number of independent requests issued in parallel. Avoid dependent request waterfalls. Mutation endpoints should return the state the client needs next.
+- Decouple UI decomposition from data-access composition. Component boundaries must not define network boundaries. A server-backed view transition or user action should normally require one coarse-grained HTTP round trip returning all state needed for the resulting view. Avoid dependent request waterfalls.
