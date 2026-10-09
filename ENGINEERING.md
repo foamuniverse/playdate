@@ -3,10 +3,11 @@
 ## Database boundary
 
 - PostgreSQL owns domain logic, invariants, and transactional behavior.
-- Application code accesses PostgreSQL **only through database API functions**. It never queries application tables directly.
-- Python knows the database API, not the underlying database representation.
-- Python has access only to the API schema, not to the schema containing application tables.
-- Enforce these boundaries with PostgreSQL privileges wherever possible; do not rely on developer discipline alone.
+- Application code accesses PostgreSQL **only through explicitly named database API functions**. It never queries or mutates application tables or views directly.
+- Python has no idea of the underlying database representation.
+- Function signatures and return values are narrow and explicit API contracts.
+- Python has privileges only on the API schema.
+- Enforce these boundaries with PostgreSQL privileges.
 
 ## API contracts
 
