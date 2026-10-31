@@ -22,6 +22,12 @@
 - Do not duplicate domain logic in Python.
 - No ORM. Database interaction consists of explicit PostgreSQL function calls.
 
+## Schema/API naming:
+
+Use the domain noun for identifier columns. Prefer player, game, message,
+request, peer, post, etc. Do not append _id merely to announce that the
+column contains an identifier.
+
 ## UI and network boundaries
 
 **UI composition is local; data composition is remote. Do not conflate them.**
