@@ -22,12 +22,6 @@
 - Do not duplicate domain logic in Python.
 - No ORM. Database interaction consists of explicit PostgreSQL function calls.
 
-## Schema/API naming:
-
-Use the domain noun for identifier columns. Prefer player, game, message,
-request, peer, post, etc. Do not append _id merely to announce that the
-column contains an identifier.
-
 ## UI and network boundaries
 
 **UI composition is local; data composition is remote. Do not conflate them.**
@@ -44,7 +38,42 @@ many HTTP calls
 one page / action
         ≈
 one purpose-built backend call
-        ↓
-one database API function
+
         ↓
 complete view model
+```
+
+## Playdate schema/API naming rule
+
+Use the domain noun for identifier columns and API fields.
+
+Examples:
+
+```text
+player
+game
+message
+request
+peer
+post
+```
+
+Compound roles keep the role and the noun:
+
+```text
+from_player
+to_player
+created_by
+invited_by
+proposed_by
+```
+
+Do not append `_id` merely to announce that a value is an identifier.
+
+Apply the same vocabulary to sequence names where practical:
+
+```text
+players_player_seq
+direct_messages_message_seq
+feed_posts_post_seq
+```
